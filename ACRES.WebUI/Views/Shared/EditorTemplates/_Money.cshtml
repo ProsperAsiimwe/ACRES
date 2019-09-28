@@ -1,0 +1,6 @@
+﻿@model double?
+
+
+<div class="form-group">
+   @Html.Bootstrap().TextBoxFor(m => m).Placeholder().ShowValidationMessage(true).Prepend("£")
+</div>

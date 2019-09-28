@@ -1,0 +1,75 @@
+﻿@model ACRES.WebUI.Models.ContactMessages.ContactMessageListViewModel
+@{
+    ViewBag.Title = "Messages " + Settings.COMPANY_NAME;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string companyName = Settings.COMPANY_NAME;
+}
+
+<!-- Section:  -->
+<section>
+    <div class="container pb-30">
+        <div class="section-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="line-bottom">Messages.</h3>
+
+                    @*@Html.Bootstrap().ActionLinkButton("New Photo", "New", "GalleryUpload").Style(ButtonStyle.Primary).AppendIcon("fa fa-plus")*@
+
+                    <br /><hr />
+
+                    <div class="table">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
+                                    <th></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.ContactMessages.Count() > 0)
+                                {
+                                    foreach (var item in Model.ContactMessages)
+                                    {
+                                        <tr>
+                                            <td>@item.Date</td>
+                                            <td>@item.Name</td>
+                                            <td>@item.Email</td>
+                                            <td>@item.Phone</td>
+                                            <td>@item.Subject</td>
+                                            <td>@item.Message</td>
+                                            <td>@Html.Bootstrap().ActionLinkButton("Delete", "Delete").RouteValues(new { id = item.ContactMessageId }).Style(ButtonStyle.Danger)</td>
+
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="6">There are no records matching your search criteria</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Title{
+    <h3 class="title text-white">Messages</h3>
+    <h4 style="color:white;">Below is a list of messages sent by your website visitors.</h4>
+}
+
+
+@section Scripts {
+}

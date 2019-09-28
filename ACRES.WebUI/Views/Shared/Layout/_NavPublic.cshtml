@@ -1,0 +1,69 @@
+﻿@using ACRES.WebUI.Infrastructure.Helpers;
+@{ 
+    var active = ViewBag.Active;
+}
+<li class="@(active == "Home" ? "active" : "")">   
+    @Html.Bootstrap().ActionLink("Home", "Index", "Home") 
+</li>
+
+<li class="@(active == "About" ? "active" : "")">
+    
+</li>
+
+<li>
+    <a href="">About Us <i class="fa fa-arrow-down"></i> </a>
+    <ul class="sub-menu">
+        <li class="@(active == "" ? "active" : "")">
+           @Html.Bootstrap().ActionLink("What We Do", "About", "Home")
+        </li>
+        <li class="@(active == "" ? "active" : "")">
+            @Html.Bootstrap().ActionLink("Our Team", "", "")
+        </li>
+        <li class="@(active == "" ? "active" : "")">
+            @Html.Bootstrap().ActionLink("Partners", "", "")
+        </li>
+
+    </ul>
+</li>
+
+<li>
+    <a href="">Rapid Response <i class="fa fa-arrow-down"></i> </a>
+    <ul class="sub-menu">
+        <li class="@(active == "" ? "active" : "")">
+            @Html.Bootstrap().ActionLink("Briefs", "", "")
+        </li>
+        <li class="@(active == "" ? "active" : "")">
+            @Html.Bootstrap().ActionLink("Submit a request", "", "")
+        </li>
+      
+    </ul>
+</li>
+
+<li>
+    <a href="">Other Activities <i class="fa fa-arrow-down"></i> </a>
+    <ul class="sub-menu">
+        <li class="@(active == "" ? "active" : "")">
+            @Html.Bootstrap().ActionLink("Citizen Power", "", "")
+        </li>
+        <li class="@(active == "" ? "active" : "")">
+            @Html.Bootstrap().ActionLink("Rilage Dialogue", "", "")
+        </li>
+        <li class="@(active == "" ? "active" : "")">
+            @Html.Bootstrap().ActionLink("Systematic Reviews", "", "")
+        </li>
+        <li class="@(active == "" ? "active" : "")">
+            @Html.Bootstrap().ActionLink("Trainings", "", "")
+        </li>
+        <li class="@(active == "" ? "active" : "")">
+           @Html.Bootstrap().ActionLink("Login", "Login", "Account").PrependIcon("zmdi zmdi-sign-in")
+        </li>
+
+    </ul>
+</li>
+
+
+<li class="@(active == "Contact" ? "active" : "")">
+    @*@Html.Bootstrap().ActionLink("Contact Us", "Contact", "Home")*@
+    @Html.Bootstrap().ActionLink("Contact Us", "Contact", "Home")
+</li>
+

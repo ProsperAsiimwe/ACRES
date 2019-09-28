@@ -1,0 +1,88 @@
+﻿@model ACRES.WebUI.Models.GalleryUploads.GalleryListViewModel
+@{
+    ViewBag.Title = "Gallery " + Settings.COMPANY_ABBR;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string companyName = Settings.COMPANY_NAME;
+}
+
+<section class="bg-theme-colored1">
+    <div class="container pt-50">
+        <div class="section-content">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h2 class="text-white">Gallery</h2>                   
+                    @Html.Bootstrap().ActionLinkButton("New Photo", "New", "GalleryUpload").Class("btn btn-theme-colored1 btn-xs").AppendIcon("fa fa-plus")
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="" data-tm-bg-color="#ecf0f1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="tm-sc tm-sc-section-title section-title section-title-style1 mb-10">
+                    <div class="title-wrapper">
+                        <h2 class="title ">
+                            <span class="">Our</span>
+                            <span class="text-theme-colored1">Photos</span>
+                        </h2>
+                        <div class="title-seperator-line"></div>
+                    </div>
+                </div>
+                @*<div class="paragraph">
+                    <p class="lead">
+                        ACRES has a unique personal touch and encourages sponsors to build relationships with the beneficiaries, exchanging letters and some have even been to Uganda to visit!
+                    </p>
+                </div>*@
+                <div class="row">
+
+                                         
+                        <table id="DonDada">
+                          
+                            <thead>
+                                <tr>
+                                    <th>Upload Date:</th>
+                                    <th>Caption:</th>
+                                    <th>Image:</th>
+                                    <th>Action(s):</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.GalleyUploads.Count() > 0)
+                                {
+                                    foreach (var item in Model.GalleyUploads)
+                                    {
+                                        <tr>
+                                            <td>@item.UploadDate</td>
+                                            <td>@item.Title</td>
+                                            <td><img src="@(string.IsNullOrEmpty(item.FileName)? "~/Content/coreAssets/images/logo/1.jpg": @Url.Content(string.Format("~/Content/PhotoGallery/{0}",item.FileName)))" alt="image" style="height:100px;max-width:100px;" /></td>                                           
+                                            <td>@Html.Bootstrap().ActionLinkButton("Delete", "Delete").RouteValues(new { id = item.GalleryUploadId }).Class("btn btn-dark btn-xs").AppendIcon("fa fa-trash")</td>
+
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="6">There are no records matching your search criteria</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</section>
+
+
+
+
+@section Scripts {
+}

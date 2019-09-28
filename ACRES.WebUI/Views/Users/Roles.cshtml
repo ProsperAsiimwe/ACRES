@@ -1,0 +1,45 @@
+﻿@model ACRES.WebUI.Models.Users.UserRolesViewModel
+@{
+    ViewBag.Title = "Roles";
+    SelectList roles = new SelectList(Model.RoleList.Select(x => new KeyValuePair<string, string>(x, x)), "Key", "Value");
+}
+
+<div class="section-light">
+    @using (var f = Html.Bootstrap().Begin(new Form())) {
+        <div class="container">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(m => m.UserId)
+            <div class="row">
+                <div class="col-md-5">
+                    <aside class="panel-summary">
+                        <h3>User details</h3>
+                        <dl class="dl-horizontal">
+                            <dt>@Html.DisplayNameFor(m => m.User.FullName)</dt>
+                            <dd>@Model.User.FullName</dd>
+                            <dt>@Html.DisplayNameFor(m => m.CurrentRoles)</dt>
+                            <dd>@Html.DisplayFor(m => m.CurrentRoles)</dd>
+                        </dl>
+                    </aside>
+                </div>
+                <div class="col-md-6 col-md-offset-1">
+                    <div class="form-light-bg">
+                        <h3 class="form-heading">Edit roles</h3>
+                        <div class="form-group">
+                            @Html.EditorFor(m => m.NewRoles, additionalViewData: new { list = roles })
+                        </div>
+                        <div class="form-submit">
+                            @Html.Bootstrap().SubmitButton().Style(ButtonStyle.Default).ButtonBlock().Text("Update").AppendIcon("glyphicon glyphicon-thumbs-up")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Title{
+    <h3 class="title text-white">@ViewBag.Title</h3>
+    <h4 style="color:white;">Update the Roles for @Model.User.FullName</h4>
+}
+

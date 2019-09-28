@@ -1,0 +1,142 @@
+﻿@model ACRES.WebUI.Models.Publications.PublicationListViewModel
+@{
+    ViewBag.Title = "PUBLICATIONS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    bool isAdmin = PageData["isAdmin"];
+}
+
+<!--Breadcrumb Banner Area Start-->
+<div class="breadcrumb-banner-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-text">
+                    <h1 class="text-center">@ViewBag.Title</h1>
+                    <div class="breadcrumb-bar">
+                        <ul class="breadcrumb text-center">
+                            <li>@Html.Bootstrap().ActionLink("Dashboard", "Index", "Account") </li>
+                            <li>@ViewBag.Title</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Breadcrumb Banner Area-->
+
+
+
+    <div class="container">
+        <div class="row no-gutters">
+
+           
+                <div class="contact-form-wrap">
+
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <h1>@ViewBag.Title</h1>
+                            <p>Below are all the Publications that have been downloaded.</p>
+                        </div>
+                        @if (isAdmin)
+            {
+                            <div class="col-sm-3">
+                                @Html.Bootstrap().ActionLinkButton("New Publication", "New").Class("button-default").AppendIcon("fa fa-plus").HtmlAttributes(new { style = "color;white" })
+                            </div>
+                        }
+                        else
+                        {
+
+                            <div class="col-sm-3">
+                                @Html.Action("Summary", "Cart")
+                            </div>
+                        }
+                    </div>
+                </div>
+
+
+                <div class="container">
+                    @Html.Partial("Partials/_SearchPublications", Model.SearchModel)
+
+                    <div class="row" style="overflow-x:scroll">
+                        <table id="DonDada">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    @if (!isAdmin)
+                                    {
+                                        <th></th>
+                                    }
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th>Submitted</th>
+                                    @if (isAdmin)
+                                    {
+                                        <th>Downloads</th>
+                                        <th></th>
+                                            <th></th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Publications.Count() > 0)
+                                {
+                                    foreach (var item in Model.Publications)
+                                    {
+                                        string css = "success";
+                                        ButtonStyle button_css = ButtonStyle.Info;
+                                        <tr class="@css">
+                                            <td>@Html.Bootstrap().Button().Text("View").Style(ButtonStyle.Success).Class("view-publication").Data(new { PublicationId = item.PublicationId })</td>
+                                            @if (!isAdmin)
+                                            {
+                                                <td>
+                                                    @using (Html.BeginForm("AddToCart", "Cart"))
+                                                    {
+                                                        @Html.Hidden("PublicationId", item.PublicationId)
+                                                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                                                        @Html.Bootstrap().SubmitButton().Style(ButtonStyle.Default).ButtonBlock().Text("Add ").Style(button_css).AppendIcon("fa fa-shopping-cart")
+
+                                                    }
+                                                </td>
+                                            }
+                                            <td>@item.Title</td>
+                                            <td>@item.Description</td>
+                                            <td>Available</td>
+                                            <td>@InputHelper.ParseDate(item.Submitted, "ddd, dd MMM yyyy")</td>
+                                            @if (isAdmin)
+                                            {
+                                                <td>@item.Downloads.Count()</td>
+                                                <td>@Html.Bootstrap().ActionLinkButton("Edit", "Edit").RouteValues(new { PublicationId = item.PublicationId }).Style(ButtonStyle.Info)</td>
+                                                    <td>@Html.Bootstrap().ActionLinkButton("Delete", "Delete").RouteValues(new { PublicationId = item.PublicationId }).Style(ButtonStyle.Danger)</td>
+
+                                            }
+
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="6">There are no records matching your search criteria</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                    <div class="clearfix">
+                        <div class="pull-right">
+                            <div class="pagination-panel">
+                                <div class="pagination-labels">@Model.PagingInfo.ItemsFrom to @Model.PagingInfo.ItemsTo of @Model.PagingInfo.TotalItems Publications @ViewBag.Number</div>
+                                @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+          
+        </div>
+    </div>
+

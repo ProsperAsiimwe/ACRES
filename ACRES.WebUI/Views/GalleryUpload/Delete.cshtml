@@ -1,0 +1,73 @@
+﻿@model ACRES.Domain.Entities.GalleryUpload
+@{
+    ViewBag.Title = "Delete Image " + Settings.COMPANY_ABBR;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string companyName = Settings.COMPANY_NAME;
+}
+
+<section class="bg-theme-colored1">
+
+    <div class="container pt-50">
+        <div class="section-content">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h2 class="text-white">Gallery | Delete</h2>
+                    <p class="lead text-white">Delete a Photo</p>                   
+                    @Html.Bootstrap().ActionLinkButton("Back", "Index", "GalleryUpload").Class("btn btn-theme-colored1 btn-xs").AppendIcon("fa fa-home")
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="" data-tm-bg-color="#ecf0f1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="tm-sc tm-sc-section-title section-title section-title-style1 mb-10">
+                    <div class="title-wrapper">
+                        <h2 class="title ">
+                            <span class="">Our</span>
+                            <span class="text-theme-colored1">Photos</span>
+                        </h2>
+                        <div class="title-seperator-line"></div>
+                    </div>
+                </div>
+                @*<div class="paragraph">
+                        <p class="lead">
+                            ACRES has a unique personal touch and encourages sponsors to build relationships with the beneficiaries, exchanging letters and some have even been to Uganda to visit!
+                        </p>
+                    </div>*@
+                <div class="row">
+
+                   
+                            <div class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.GalleryUploadId)
+                            </div>
+
+                            <div class="col-sm-4">
+                                @Html.DisplayFor(model => model.GalleryUploadId)
+                            </div>
+
+                            <div class="col-sm-4">
+                                @using (Html.BeginForm("DeleteConfirmed", "GalleryUpload", new { id = Model.GalleryUploadId }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.Bootstrap().SubmitButton().Text("Delete Photo").Style(ButtonStyle.Danger).AppendIcon("fa fa-trash")
+
+                                }
+                            </div>
+                    
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+@section Scripts {
+}

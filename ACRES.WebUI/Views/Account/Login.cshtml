@@ -1,0 +1,76 @@
+﻿@using ACRES.WebUI.Models.Account
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string companyName = Settings.COMPANY_NAME;
+    string instr = "Please Enter your login details";
+}
+
+ <!--Breadcrumb Banner Area Start-->
+<div class="breadcrumb-banner-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-text">
+                    <h1 class="text-center">@ViewBag.Title</h1>
+                    <div class="breadcrumb-bar">
+                        <ul class="breadcrumb text-center">
+                            <li>@Html.Bootstrap().ActionLink("Home", "Index", "Home") </li>
+                            <li>@instr</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Breadcrumb Banner Area-->
+
+<!--About Area Start-->
+@*<div class="about-area mt-95">
+    <div class="container">
+
+      @Html.Partial("Partials/_Login")
+
+    </div>
+</div>*@
+<!--End of About Area-->
+
+
+                <!--Login Register Area Strat-->
+<div class="login-register-area pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4 col-sm-4">
+
+            </div>
+
+            <!--Login Form Start-->
+            <div class="col-md-4 col-sm-4">
+                <div class="customer-login-register">
+                    <div class="form-login-title">
+                        <h2>Login</h2>
+                    </div>
+                  
+                    @Html.Partial("Partials/_Login")
+
+
+                </div>
+            </div>
+            <!--Login Form End-->           
+
+            <div class="col-md-4 col-sm-4">
+
+            </div>
+     </div>
+    </div>
+</div>
+<!--Login Register Area End-->
+
+
+
+@section Scripts {
+
+}

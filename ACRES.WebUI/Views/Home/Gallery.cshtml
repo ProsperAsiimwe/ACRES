@@ -1,0 +1,133 @@
+﻿@{
+    ViewBag.Title = "Gallery " + Settings.COMPANY_ABBR;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string companyName = Settings.COMPANY_NAME;
+}
+
+@model ACRES.WebUI.Models.GalleryUploads.GalleryListViewModel
+
+<!-- Section: inner-header -->
+<section class="page-title divider layer-overlay overlay-dark-8 section-typo-light" data-tm-bg-img="@Url.Content("~/Content/coreAssets/images/bg/allPagesBg.png")">
+    <div class="container pt-90 pb-90">
+        <!-- Section Content -->
+        <div class="section-content">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2 class="title text-white">Gallery</h2>
+                    <nav role="navigation" class="breadcrumb-trail breadcrumbs">
+                        <div class="breadcrumbs">
+                            <span class="trail-item trail-begin">
+                                <a href="#"><span>Home</span></a>
+                            </span>
+                            <span><i class="fa fa-angle-right"></i></span>
+                            <span class="trail-item"><span>Pages</span></span>
+                            <span><i class="fa fa-angle-right"></i></span>
+                            <span itemscope itemtype="http://schema.org/ListItem" class="trail-item trail-end active"><span>Gallery</span></span>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+		<!-- Our Gallery -->
+<section class="layer-overlay overlay-white-5" data-tm-bg-img="images/bg/bg.png" data-tm-bg-color="#f7f6f5">
+    <div class="container pb-70">
+        <div class="section-content">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="tm-sc tm-sc-gallery tm-sc-gallery-masonry gallery-style1-simple">
+                        <!-- Isotope Gallery Grid -->
+                        <div class="isotope-layout masonry grid-3 gutter lightgallery-lightbox clearfix">
+                            <div class="isotope-item isotope-item-sizer"></div>
+                            <!-- the loop -->
+                                @if (Model.GalleyUploads.Count() > 0)
+                                {
+                                    foreach (var item in Model.GalleyUploads)
+                                    {
+
+                                          <!-- Isotope Item Start -->
+                                        <div class="isotope-item helping home">
+                                            <div class="tm-gallery box-hover-effect">
+                                                <div class="effect-wrapper">
+                                                    <div class="thumb ">
+                                                        <img src="@Url.Content(string.Format("~/Content/PhotoGallery/{0}",item.FileName))" alt="">
+                                                        <div class="d-none">
+                                                            <a href="#"></a>
+                                                            <a href="#"></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="overlay-shade shade-theme-colored1"></div>
+                                                    <div class="text-holder text-holder-bottom-left">
+                                                        <div class="title">@item.Title</div>
+                                                    </div>
+                                                    <div class="icons-holder icons-holder-middle">
+                                                        <div class="icons-holder-inner">
+                                                            <div class="styled-icons icon-dark icon-circled icon-theme-colored2">
+                                                                <a class="lightgallery-trigger styled-icons-item" href="@Url.Content(string.Format("~/Content/PhotoGallery/{0}",item.FileName))" title="@item.Title" data-exthumbimage="@Url.Content(string.Format("~/Content/PhotoGallery/{0}",item.FileName))" data-src="@Url.Content(string.Format("~/Content/PhotoGallery/{0}",item.FileName))">
+                                                                    <i class="fa fa-picture-o"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                            <!-- Isotope Item End -->
+
+                                    }
+                                }
+                          
+                         
+                            <!-- end of the loop -->
+                        </div>
+                        <!-- End Isotope Gallery Grid -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+@*<div id="gg-screen" hidden></div> 
+
+<div style="min-height: 98vh; margin: 2vh; color: #2c3e50; padding: 0 10vw;  margin: 1vh; padding: 0 5vw">
+    <div class="container lazyImages">
+        <div class="gg-box">
+
+            @if (Model.GalleyUploads.Count() > 0)
+            {
+                foreach (var item in Model.GalleyUploads)
+                {
+
+                    <div class="gg-box">
+
+                        <img alt="Pic"
+                             src="@Url.Content("~/Content/coreAssets/images/preloaders/picLoader.gif")"
+                             data-echo="@Url.Content(string.Format("~/Content/PhotoGallery/{0}",item.FileName))">
+
+                        <div class="w3-container">
+                            <h5>5 Terre</h5>
+                        </div>
+
+                    </div>
+
+
+                }
+            }
+        </div>
+        </div>
+    </div>*@
+
+
+@section Scripts {
+
+<script type="text/javascript" src="~/Scripts/site/grid-gallery.min.js"></script>
+@*<script type="text/javascript" src="~/Scripts/site/grid-gallery.js"></script>*@
+
+    @*<script type="text/javascript" src="@Url.Content("~/Scripts/site/grid-gallery.js")"></script>*@
+}

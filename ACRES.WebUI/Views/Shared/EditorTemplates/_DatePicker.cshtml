@@ -1,0 +1,3 @@
+﻿@model DateTime?
+
+@Html.Bootstrap().TextBoxFor(m => m).Placeholder("Date format: mm/dd/yyyy").Data(new { provide = "datepicker", date_format = "mm/dd/yyyy" }).Format("{0:MM/dd/yyyy}").HtmlAttributes(new { autocomplete = "on" }).ShowValidationMessage(true)

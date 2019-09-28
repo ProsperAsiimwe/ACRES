@@ -1,0 +1,62 @@
+﻿@model ACRES.Domain.Entities.ApplicationUser
+@{
+    string roleName = PageData["roleName"];
+    string roleTitle = PageData["roleTitle"];
+    ViewBag.Title = "Delete " + roleTitle;
+    string[] roles = new ACRES.WebUI.Infrastructure.Helpers.UserHelper(Model).GetUserRoles();
+}
+
+<!-- Section:  -->
+<section>
+    <div class="container pb-30">
+        <div class="section-content">
+            <div class="row">
+                <div class="col-md-12">
+                  
+                    <div class="table">
+                        <table class="table">
+                            <thead>
+                                <tr>
+
+                                    <th>Full Name</th>
+                                    <th>Email Address</th>
+                                    <th>Role</th>
+                                    <th>Delete?</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td>@Model.FullName</td>
+                                    <td>@Html.EmailLink(Model.Email)</td>
+                                    <td>@Html.ParseList(roles, "list-unstyled")</td>
+                                    <td>
+                                        @using (Html.BeginForm("Destroy", "Users", new { id = Model.DisplayId }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.Bootstrap().SubmitButton().Text("Delete User").Style(ButtonStyle.Danger).AppendIcon("glyphicon glyphicon-remove")
+                                        }
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Title{
+    <h3 class="title text-white">@ViewBag.Title</h3>
+    <h4 style="color:white;">Are you sure you want to delete this?</h4>
+}
+
+@section menu{
+    <li>@Html.Bootstrap().ActionLinkButton("Account", "Index", "Users").Style(ButtonStyle.Success).AppendIcon("fa fa-home")</li>
+}
+

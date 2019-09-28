@@ -1,0 +1,36 @@
+﻿@using ACRES.WebUI.Infrastructure.Helpers;
+@{
+    var active = ViewBag.Active;//.Class()
+}
+
+<li class="@(active == "Account" ? "active" : "")">
+    @Html.Bootstrap().ActionLink("DASHBOARD", "Index", "Account")
+
+</li>
+
+<li class="@(active == "Publications" ? "active" : "")">
+    @Html.Bootstrap().ActionLink("PUBLICATIONS", "Index", "Publications")
+
+</li>
+
+<li class="@(active == "Articles" ? "active" : "")">
+    @Html.Bootstrap().ActionLink("NEWS ARTICLES", "Index", "Articles")
+</li>
+
+<li class="@(active == "Newsletters" ? "active" : "")">
+    @Html.Bootstrap().ActionLink("NEWS LETTERS", "Index", "Newsletters")
+</li>
+
+
+<li>
+    <a href="course.html">Account <i class="fa fa-arrow-down"></i></a>
+    <ul class="sub-menu">
+        <li class="@(active == "Account" ? "active" : "")">
+           @Html.NavigationLink("Admins", "Index", "Users")
+        </li>
+        <li class="@(active == "Account" ? "active" : "")">
+           @Html.NavigationLink("Change password", "ChangePwd", "Account")
+        </li>
+    </ul>
+</li>
+

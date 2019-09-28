@@ -1,0 +1,47 @@
+﻿@model ACRES.WebUI.Models.Account.LoginViewModel
+
+
+<div class="login-form">
+    @using (Html.BeginForm("Login", "Account"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+       
+                <div class="form-fild">
+                    @Html.Bootstrap().TextBoxFor(m => m.Email).Placeholder().ShowValidationMessage(true).HtmlAttributes(new { type = "email", required = "" }).ShowValidationMessage(true).Label()
+                </div>
+              
+                <div class="form-fild">
+                    @Html.Bootstrap().PasswordFor(m => m.Password).Placeholder().HtmlAttributes(new { autocomplete = "off" }).ShowValidationMessage(true).Label()
+                </div>
+                
+                <div class="login-submit">
+                    <button class="button-default" type="submit">Login</button>
+                </div>
+
+
+    }
+
+
+    @*<form action="#">
+        <div class="form-fild">
+            <p><label>Username or email address <span class="required">*</span></label></p>
+            <input name="username" value="" type="text">
+        </div>
+        <div class="form-fild">
+            <p><label>Password <span class="required">*</span></label></p>
+            <input name="password" value="" type="password">
+        </div>
+        <div class="login-submit">
+            <button type="submit" class="button-default">Login</button>
+            <label>
+                <input class="checkbox" name="rememberme" value="" type="checkbox">
+                <span>Remember me</span>
+            </label>
+        </div>
+        <div class="lost-password">
+            <a href="#">Lost your password?</a>
+        </div>
+    </form>*@
+</div>

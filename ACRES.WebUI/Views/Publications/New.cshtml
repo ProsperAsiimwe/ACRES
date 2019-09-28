@@ -1,0 +1,145 @@
+﻿@model ACRES.WebUI.Models.Publications.PublicationViewModel
+@{
+    ViewBag.Title = "NEW PUBLICATIONS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    bool isAdmin = PageData["isAdmin"];
+    string action, cancel_url, buttonText, instr, glyph;    
+    string roleName = PageData["roleName"];
+    string roleTitle = PageData["roleTitle"];
+
+    if (Model.PublicationId > 0)
+    {
+        cancel_url = Url.Action("Show", new { PublicationId = Model.PublicationId });
+        action = "Update";
+        buttonText = "Update Publication";
+        instr = "Modify the details and click Update to apply changes";
+        glyph = "glyphicon glyphicon-thumbs-up";
+        ViewBag.Title = "Update Publication";
+    }
+    else
+    {
+        cancel_url = Url.Action("Index");
+        action = "Create";
+        buttonText = "Create Publication";
+        instr = "Complete the form below and click Create to create a new Publication";
+        glyph = "glyphicon glyphicon-plus";
+        ViewBag.Title = "Create Publication";
+    }
+}
+
+<!--Breadcrumb Banner Area Start-->
+<div class="breadcrumb-banner-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-text">
+                    <h1 class="text-center">@ViewBag.Title</h1>
+                    <div class="breadcrumb-bar">
+                        <ul class="breadcrumb text-center">
+                            <li>@Html.Bootstrap().ActionLink("PUBLICATIONS", "Index", "Publications") </li>
+                            <li>@ViewBag.Title</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Breadcrumb Banner Area-->
+
+
+                <!--Contact Area Start-->
+<div class="contact-area pt-100 pb-100">
+    <div class="container">
+        <div class="row no-gutters">
+
+            @using (Html.Bootstrap().Begin(new Form(action, "Publications").FormMethod(FormMethod.Post).HtmlAttributes(new { enctype = "multipart/form-data" })))
+             {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(p => p.PublicationId)
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+              
+            <div class="col-md-12 col-lg-12 ">
+                <div class="edubuzz-address">
+                    <h2 class="contact-title">@ViewBag.Title</h2>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="contact-form-style mb-20">
+                            @Html.Bootstrap().DropDownListFor(m => m.Type, Model.Types().Select(x => new SelectListItem { Value = x.Key.ToString(), Text = x.Value })).Class("default-input").OptionLabel("Select Publication Type").Label().HtmlAttributes(new { style = "color:white;" })
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="contact-form-style mb-20">
+                            @Html.Bootstrap().TextBoxFor(p => p.Title).Placeholder().Class("default-input").Label().HtmlAttributes(new { style = "color:white;" })
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="contact-form-style mb-20">
+                            @Html.Bootstrap().TextBoxFor(m => m.SubjectMatter).Placeholder().Class("default-input").Label().HtmlAttributes(new { style = "color:white;" })
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="contact-form-style">
+                            @Html.Bootstrap().TextAreaFor(m => m.Description).Placeholder().Class("default-input").Label().HtmlAttributes(new { style = "color:white;" })
+                        </div>
+                    </div>
+                  
+                    <div class="col-12">
+                       
+                            @Html.Bootstrap().FileFor(m => m.File).Class("default-input").Label().HtmlAttributes(new { style = "color:white;" })
+                      
+                    </div>
+                    <div class="col-12">
+                        <div class="contact-form-style mb-20">
+                            @Html.Bootstrap().TextBoxFor(m => m.SplitPage).Placeholder().HtmlAttributes(new { type = "number" }).Class("default-input").Label().HtmlAttributes(new { style = "color:white;" })
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="contact-form-style">
+                            <button class="default-button" type="submit">@buttonText <i class=@glyph></i></button>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                </div>
+            </div>
+
+            @*<div class="col-md-12 col-lg-6 yellow-bg">
+                <div class="contact-form-wrap">
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="contact-form-style mb-20">
+                               @Html.Bootstrap().TextBoxFor(m => m.Price).Placeholder().HtmlAttributes(new { type = "number" }).Class("default-input").Label().HtmlAttributes(new { style = "color:white;" })
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="contact-form-style mb-20">
+                               @Html.Bootstrap().FileFor(m => m.File).Class("default-input").Label().HtmlAttributes(new { style = "color:white;" })
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="contact-form-style mb-20">
+                                @Html.Bootstrap().TextBoxFor(m => m.SplitPage).Placeholder().HtmlAttributes(new { type = "number" }).Class("default-input").Label().HtmlAttributes(new { style = "color:white;" })
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="contact-form-style">
+                                <button class="default-button" type="submit">@buttonText <i class=@glyph></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="form-messege"></p>
+                </div>
+            </div>*@
+
+            }
+        </div>
+    </div>
+</div>
+<!--Contact Area End-->

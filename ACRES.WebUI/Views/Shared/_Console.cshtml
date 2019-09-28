@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title - @Settings.COMPANY_NAME</title>
+    @Html.Partial("Layout/_HeadLogin")
+  
+</head>
+<body>
+    <div class="form-body">
+
+        <div class="website-logo">
+            <a>
+                <div class="logo">
+                    <img class="logo-size" src="@Url.Content("~/Content/coreAssets/images/logo/logoTransp.png")" alt="">
+                </div>
+            </a>
+        </div>
+
+        <main>
+            @RenderBody()
+        </main>
+
+
+    </div>
+
+      
+
+        @Html.Partial("Layout/_ScriptsLogin")
+        @RenderSection("scripts", required: false)
+</body>
+</html>

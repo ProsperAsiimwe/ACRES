@@ -1,0 +1,23 @@
+﻿@model ACRES.Domain.Entities.Order
+@{
+}
+
+
+<p>Dear Our Roots Africa Staff</p>
+<p>Re: Notification for new order ID:  <strong>@Model.OrderId</strong></p>
+<hr />
+<p><strong>Date:</strong> @Model.Date</p>
+<p><strong>Name:</strong> @Model.Name</p>
+<p><strong>Phone:</strong> @Model.Phone</p>
+<p><strong>Address 1:</strong> @Model.Line1</p>
+<p><strong>Address 2:</strong> @Model.Line2</p>
+<p><strong>Address 3:</strong> @Model.Line3</p>
+<p><strong>Zip:</strong> @Model.Zip</p>
+@*<p><strong>Description:</strong> @Html.ParseList(Model.Items.ToList().Select(p => string.Format("{0} {1}", p.Quantity, p.Product.productName)).ToArray())</p>*@
+@*<p><strong>Total Cost:</strong> @Model.Cost</p>*@
+
+
+<hr />
+<p>Yours sincerely</p>
+<p><strong>@Model.Name</strong></p>
+<p><strong>@Model.Email</strong></p>

@@ -1,0 +1,17 @@
+﻿@model ACRES.Domain.Entities.ContactMessage
+@{
+//string url = string.Format("{0}{1}", Settings.COMPANY_URL);
+}
+<p>Dear ACRES Systems Staff</p>
+<p>Re: Message Notification regarding <strong>@Model.Subject</strong> from <strong>@Model.Name</strong></p>
+<hr />
+<p><strong>Date:</strong> @Model.Date</p>
+<p><strong>Subject:</strong> @Model.Subject</p>
+<p><strong>Message:</strong> @Model.Message</p>
+
+
+<hr />
+<p>Yours sincerely</p>
+<p><strong>@Model.Name</strong></p>
+<p><strong>@Model.Email</strong></p>
+<p><strong>@Model.Phone</strong></p>

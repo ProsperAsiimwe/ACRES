@@ -1,0 +1,21 @@
+﻿@{ 
+    string area = ViewBag.Area;
+}
+
+<ul class="nav navbar-nav">
+    <li class="nav-item @(area == "Account" ? "active" : "")">@Html.Bootstrap().ActionLink("Dashboard", "Index", "Account").Class("nav-link").PrependIcon("fa fa-area-chart")</li>
+    <li class="nav-item @(area == "Suppliers" ? "active" : "")">@Html.Bootstrap().ActionLink("Suppliers", "Index", "Suppliers").Class("nav-link").PrependIcon("fa fa-user-plus")</li>
+    <li class="nav-item @(area == "Suppliers" ? "active" : "")">@Html.Bootstrap().ActionLink("Products", "Index", "Products").Class("nav-link").PrependIcon("fa fa-list-ul")</li>
+    <li class="nav-item dropdown @(area == "Manage" ? "active" : "")">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-wrench"></i> Manage <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li class="dropdown-header">Consignments </li>
+            <li>@Html.Bootstrap().ActionLink("Consignments", "Index", "Imports").Class("dropdown-item").PrependIcon("fa fa-ship")</li>
+            <li class="dropdown-header">Stock </li>
+            <li>@Html.Bootstrap().ActionLink("Stock Updates", "Index", "StockUpdates").Class("dropdown-item").PrependIcon("fa fa-upload")</li>
+            <li>@Html.Bootstrap().ActionLink("Stock Allocations", "Index", "StockAllocations").Class("dropdown-item").PrependIcon("fa fa-hand-pointer-o")</li>
+            <li>@Html.Bootstrap().ActionLink("Stock Movements", "Index", "StockMovements").Class("dropdown-item").PrependIcon("fa fa-motorcycle")</li>
+        </ul>
+    </li>
+       
+</ul>

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ACRES.Domain.Entities.Reference>
+
+<aside class="panel-summary">
+    <h3>Referees</h3>
+    @if (Model.Count() > 0) {
+        foreach (var item in Model) {
+            var isDismissed = (item.Employment.Terminated == ACRES.Domain.Enums.EmploymentTerminated.Dismissal) ? true : false;
+            string css = "btn btn-" + item.GetStatusCssClass();
+            <dl class="dl-horizontal spacer-bottom">
+                <dt>@Html.DisplayNameFor(m => m.FullName)</dt>
+                @*<dd>@Html.ActionLink(item.FullName, "Show", "Referees", new { id = item.User.DisplayId, referenceId = item.ReferenceId }, null)</dd>*@
+                <dd>@item.FullName</dd>
+                <dt>Reference Status</dt>
+                <dd>@Html.ActionLink(item.GetStatus(), "Show", "Referees", new { id = item.User.DisplayId, referenceId = item.ReferenceId }, new { @class = css })</dd>
+                @if (isDismissed)
+                {
+                    <dt>Termination Status</dt>
+                    <dd><span class="text-danger">Dismissal</span></dd>
+                }
+                
+            </dl>
+        }
+    }
+    else {
+        <p>There are no referees associated with this candidate</p>
+    }
+</aside>
+
+

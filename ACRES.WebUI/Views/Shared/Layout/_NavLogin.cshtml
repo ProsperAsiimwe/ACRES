@@ -1,0 +1,36 @@
+﻿
+<a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+    @*<span class="user-img">
+            <img class="rounded-circle" src="~/Content/assets/img/user.jpg" width="24" alt="Admin">
+            <span class="status online"></span>
+        </span>*@
+    <span>@Html.Action("GetLoginName", "Account")</span>
+</a>
+<div class="dropdown-menu">
+        @Html.RouteLink("User Profile", "Users-UserEdit", routeValues: null, htmlAttributes: new { @class = "dropdown-item" })
+        @Html.ActionLink("Change password", "ChangePwd", "Account", null, new { @class = "dropdown-item" })
+
+       @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
+       {
+        @Html.AntiForgeryToken()
+        <a href="javascript:document.getElementById('logoutForm').submit()" class="dropdown-item">Log Out</a>
+       }
+    </div>
+
+
+@*<ul class="nav navbar-nav navbar-right">
+    <li class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li>@Html.RouteLink("User Profile", "Users-UserEdit", routeValues: null, htmlAttributes: new { @class = "dropdown-link" })</li>
+            <li>@Html.ActionLink("Change password", "ChangePwd", "Account", null, new { @class = "dropdown-link" })</li>
+        </ul>
+    </li>
+    <li class="nav-item">
+        @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" })) {
+            @Html.AntiForgeryToken()
+            <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link"><img src="~/Content/Imgs/logout.png" alt="Log out" /></a>
+        }
+    </li>
+</ul>
+<span id="login-name" class="hidden-xs">@Html.Action("GetLoginName", "Account")</span>*@

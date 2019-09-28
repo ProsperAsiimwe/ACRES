@@ -1,0 +1,17 @@
+﻿@model ACRES.WebUI.Models.Downloads.SearchDownloadsModel
+
+<div class="filters">
+    @using (Html.Bootstrap().Begin(new Form("Index", "Downloads").Type(FormType.Inline)))
+    {
+
+        <div class="form-group">
+            @Html.Bootstrap().TextBoxFor(m => m.Name).Placeholder().PrependIcon("glyphicon glyphicon-user").Class("default-input")
+        </div>
+        <div class="form-group">
+            @Html.Bootstrap().TextBoxFor(m => m.SubjectMatter).Placeholder().PrependIcon("glyphicon glyphicon-envelope").Class("default-input")
+        </div>
+        <div class="form-group">
+            @Html.Bootstrap().SubmitButton().Text("Filter").Style(ButtonStyle.Primary)
+        </div>
+    }
+</div>
